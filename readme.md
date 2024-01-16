@@ -14,3 +14,4 @@ Para se gerar valores aleatórios será necessário descomentar algumas partes d
 int array1[tamanho];
 int array2[tamanho];
 ```
+*Obs.: o código não funcionará se as arrays tiverem tamanho diferente*
