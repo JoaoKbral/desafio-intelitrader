@@ -2,6 +2,14 @@
 #include <stdlib.h>
 #include <time.h>
 
+void comparador(int *temp, int valor1, int valor2)
+{
+    if (*temp > abs(valor1 - valor2))
+    {
+        *temp = abs(valor1 - valor2);
+    }
+}
+
 int main(void)
 {
 
@@ -11,8 +19,8 @@ int main(void)
 
     int array1[] = {1, 3, 4, 5, 2, 6, 7, 70, 100, 92, 20};
     int array2[] = {123, 1241, 4532, 342, 134, 1233, 43, 70, 70, 300};
-    int temp = 123412344;
-
+    int temp;
+    int *pointer_temp = &temp;
     // gerador de números randomicos
     // for (int i = 0; i < tamanho; i++)
     // {
@@ -28,39 +36,29 @@ int main(void)
             if (j <= i)
             {
 
-                if (i == 0 && j == 0)
-                {
-                    temp = abs(array2[j] - array1[i]);
-                    continue;
-                }
-
                 if (temp > abs(array2[j] - array1[i]))
                 {
-                    temp = abs(array2[j] - array1[i]);
+                    comparador(pointer_temp, array2[j], array1[i]);
                     continue;
                 }
 
                 if (temp > abs(array2[j] - array2[i]) && i != j)
                 {
-                    temp = abs(array2[j] - array2[i]);
+                    comparador(pointer_temp, array2[j], array2[i]);
                     continue;
                 }
 
+                if (i == 0 && j == 0)
+                {
+                    temp = abs(array2[j] - array1[i]);
+                    continue;
+                }
                 continue;
             }
 
-            if (temp > abs(array1[j] - array1[i]))
-            {
-                temp = abs(array1[j] - array1[i]);
-            }
-            else if (temp > abs(array2[j] - array1[i]))
-            {
-                temp = abs(array2[j] - array1[i]);
-            }
-            else if (temp > abs(array2[j] - array2[i]))
-            {
-                temp = abs(array2[j] - array2[i]);
-            }
+            comparador(pointer_temp, array1[j], array1[i]);
+            comparador(pointer_temp, array1[j], array2[i]);
+            comparador(pointer_temp, array2[j], array2[i]);
         }
     }
 
