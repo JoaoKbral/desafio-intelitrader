@@ -62,6 +62,7 @@ void descriptografia(char msg[])
     for (int i = 0; i < tamanho; i++)
     {
         // aplica as regras e converte o valor
+        // as regras são aplicadas quando chega no espaço entre as linhas ou quando é o fim da msg
         if (msg[i] == ' ' || i == tamanho-1)
         {
             regra1(pontTemp);
@@ -71,10 +72,9 @@ void descriptografia(char msg[])
 
             contador++;
 
-            memset(temp, 0, sizeof(temp));
             continue;
         }
-
+        // seta o byte para ser convertido
         temp[i - 9 * contador] = msg[i];
     }
 }
